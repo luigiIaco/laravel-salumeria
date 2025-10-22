@@ -57,25 +57,33 @@ class UserController extends Controller
         ])->onlyInput('email');
     }
 
-    public function uploadImage(Request $request) {
-        Log::info($request);
-        
+    public function uploadImage(Request $request)
+    {
         $request->validate([
-            'imageProfile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'imageProfile' => 'required|mimes:jpeg,png,jpg,gif,svg,jfif,pjpeg,avif|max:2048',
         ]);
 
         $user = Auth::user();
 
-        if($user->imageProfile) {
-            Storage::delete('public/' . $user->imageProfile);
+        if ($user->imageProfile) {
+            Storage::disk('public')->delete($user->imageProfile);
         }
 
-        $path = $request->file('imageProfile')->store('profile_images/' . $user->name ,'public');
+        $path = $request->file('imageProfile')->store('profile_images/' . $user->name, 'public');
 
         $user->imageProfile = $path;
         $user->save();
 
-        return redirect()->route('home')->with('success','Immagine caricata con successo');
+        return redirect()->route('home')->with('success', 'Immagine caricata con successo');
+    }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->with('success', 'Logout avvenuto con successo');
     }
 }

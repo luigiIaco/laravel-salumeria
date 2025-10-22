@@ -37,9 +37,6 @@ class ProdottoController extends Controller
 
         $products = Prodotto::where("category_id", $category)->get();
 
-
-        Log::info($products);
-
         return view('prodotti.index', compact('products', 'category'));
     }
 

@@ -73,6 +73,45 @@
             object-fit: cover;
         }
 
+        a {
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .modalError {
+            /* nascosta di default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Contenuto modale */
+        .modalContent {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Pulsante chiudi */
+        .modalError .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
         @keyframes scaleIn {
             to {
                 opacity: 1;
@@ -106,38 +145,37 @@
                 @auth
                 <div class="flex">
                     Ciao, {{ Auth::user()->name }}
-                    @if (!session('success') && !Auth::user()->imageProfile)
-                    <div class="flex flex-col items-center">
-                        <div class="avatar-circle" id="circleImage"><i class="fa-solid fa-user fa-lg" style="color: #c3c6d1;"></i></div>
-                        <i class="fa-solid fa-arrow-up-from-bracket fa-2xs"
-                            title="Clicca per aggiungere un'immagine"
-                            style="cursor: pointer; color: #ffffff; margin-top: 12px; margin-left: 9px;"
-                            data-bs-toggle="modal"
-                            data-bs-target="#uploadModal"></i>
-                    </div>
-                    @else
                     <el-dropdown class="inline-block">
                         <button class="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 text-sm font-semibold text-gray-900 shadow-xs">
+                            @if (!Auth::user()->imageProfile)
+                            <div class="avatar-circle" id="circleImage"><i class="fa-solid fa-user fa-lg" style="color: #c3c6d1;"></i></div>
+                            @else
                             <img
                                 src="{{ asset('storage/' . Auth::user()->imageProfile) }}"
                                 alt="Avatar"
                                 class="w-12 h-12 rounded-full object-cover">
+                            @endif
                         </button>
 
                         <el-menu anchor="bottom end" popover class="w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
                             <div class="py-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">Account settings</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">Support</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">License</a>
-                                <form action="#" method="POST">
-                                    <button type="submit" class="block w-full px-4 py-2 text-left text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">Sign out</button>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">Dati Anagrafici</a>
+                                @if (!Auth::user()->imageProfile)
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden" data-bs-toggle="modal" data-bs-target="#uploadModal"> Aggiungi immagine</a>
+                                @else
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden" data-bs-toggle="modal" data-bs-target="#uploadModal"> Cambia immagine</a>
+                                @endif
+                                <a href="{{route('page.cart')}}" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">Carrello</a>
+                                <form action="{{ route('logoutUser') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="block w-full px-4 py-2 text-left text-sm text-red-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                        Sign out
+                                    </button>
                                 </form>
+
                             </div>
                         </el-menu>
                     </el-dropdown>
-
-
-                    @endif
                 </div>
                 <form id="logout-form" action="" method="POST" style="display:none;">
                     @csrf
@@ -180,12 +218,18 @@
                                 src=""
                                 alt="Anteprima immagine"
                                 class="shadow-sm"
-                                style="width: 120px; height: 120px; object-fit: cover; margin-bottom: 15px;margin:0 auto">
+                                style="width: 120px; height: 120px; object-fit: cover; margin-bottom: 15px; margin: 0 auto;">
                         </div>
 
                         <!-- Input file -->
                         <div class="mb-3">
-                            <input type="file" class="form-control" id="avatarInput" name="imageProfile" accept="image/*" required>
+                            <input
+                                type="file"
+                                class="form-control"
+                                id="avatarInput"
+                                name="imageProfile"
+                                accept="image/*"
+                                required>
                         </div>
 
                         <button type="submit" class="btn w-100 text-white" style="background-color:#B3543E; border:none;">
@@ -196,6 +240,7 @@
             </div>
         </div>
     </div>
+
 
 
 
@@ -227,6 +272,7 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -110,13 +110,24 @@
 </style>
 
 <div class="container text-center">
+    @if(session('success'))
+    <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 p-2 shadow-md" role="alert" style="width: 16%; margin: 0 auto; position:relative; top:55px">
+        <p class="font-bold" style="margin-bottom:0px !important">{{session('success')}}</p>
+    </div>
+    @endif
+
+
     @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+    <div role="alert">
+        <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+        </div>
+        <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
     </div>
     @endif
 
@@ -154,10 +165,8 @@
             </div>
 
             <div class="mt-4 flex justify-center">
-                <p class="text-muted mb-1">Non hai un account?
-                <div class="w-26">
-                    <a href="{{ url('/register') }}" class="btn-underline">Registrati ora</a>
-                </div>
+                <p class="text-muted">Non hai un account?
+                    <a href="{{ url('/register') }}" class="btn-underline mx-1">Registrati ora</a>
                 </p>
 
             </div>

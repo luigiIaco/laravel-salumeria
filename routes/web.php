@@ -26,6 +26,8 @@ Route::get('/products/filters/{category}', [ProdottoController::class, 'showCate
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [UserController::class, 'login'])->name('loginForm');
 
+Route::post('/logout', [UserController::class, 'logout'])->name('logoutUser');
+
 //Registrazione
 Route::get('/register', [UserController::class, 'showRegistrationForm'])->name('page.register');
 Route::post('/register', [UserController::class, 'register'])->name('registerForm');
