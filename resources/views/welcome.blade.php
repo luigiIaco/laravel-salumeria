@@ -9,12 +9,8 @@
     }
 </style>
 
-@section('title', 'Salumeria Bella Vita')
-
 @section('content')
-<!-- Hero -->
-<!-- Navbar -->
-
+<div>
 <section class="bg-emerald-600 text-white text-center py-5 scale-in" style="animation-delay: .5s;">
     <div class="container">
         <h1 class="fw-bold">Benvenuti alla Salumeria Bella Vita</h1>
@@ -89,4 +85,5 @@
         <p class="text-muted">✉️ info@salumeriabellavita.it</p>
     </div>
 </section>
+</div>
 @endsection

@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Registrazione - Salumeria Bella Vita')
-
 @section('content')
 <style>
     .register-card {
@@ -85,7 +83,6 @@
     <div class="register-card scale-in">
         <img src="{{ asset('images/logo/logoSalumeria.png') }}" alt="Logo Salumeria" class="logo">
         <h2>Registrati</h2>
-        <p class="fw-semibold">Crea un account per scoprire i nostri prodotti e offerte esclusive</p>
 
         <form method="POST" action="{{ route('registerForm') }}">
             @csrf

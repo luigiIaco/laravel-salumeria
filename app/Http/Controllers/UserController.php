@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cookie;
 
 class UserController extends Controller
 {
@@ -36,16 +37,23 @@ class UserController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.login');
+        $cookie_remember = Cookie::get('remember_me');
+        $rememberDataUsers = json_decode($cookie_remember, true);
+        return view('auth.login',compact('rememberDataUsers'));
     }
 
     public function login(Request $request)
     {
-
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
+
+        //Log::info($credentials);
+
+        if($request->has('remember')) {
+            Cookie::queue('remember_me', json_encode($credentials), 60 * 24 * 14); // 14 giorni
+        }
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();

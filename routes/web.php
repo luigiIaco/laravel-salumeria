@@ -37,3 +37,5 @@ Route::post('/upload-image', [UserController::class, 'uploadImage'])->name('uplo
 
 //Carrello
 Route::get('/cart', [ProdottoController::class, 'cartPage'])->name('page.cart');
+Route::post('/cart-add', [ProdottoController::class, 'cartAdd'])->name('cart.add');
+

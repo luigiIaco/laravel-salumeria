@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Lista Prodotti')
-
 @section('content')
 <div class="container-fluid py-5">
 

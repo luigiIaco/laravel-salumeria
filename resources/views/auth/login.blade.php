@@ -1,21 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Accesso - Salumeria Bella Vita')
-
 @section('content')
 <style>
-    body {
-        background: linear-gradient(135deg, #f8e0b6 0%, #f7d9aa 50%, #f4c77a 100%);
-        font-family: 'Poppins', sans-serif;
-    }
-
     .login-card {
         background: rgba(255, 255, 255, 0.92);
         border-radius: 20px;
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         padding: 2.5rem;
         max-width: 420px;
-        margin: 80px auto;
+        margin: 110px auto;
         animation: fadeIn 0.8s ease-in-out;
     }
 
@@ -30,7 +23,7 @@
     .login-logo {
         display: block;
         margin: 0 auto 1.5rem;
-        width: 100px;
+        width: 80px;
         height: auto;
         border-radius: 50%;
         box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
@@ -111,7 +104,7 @@
 
 <div class="container text-center">
     @if(session('success'))
-    <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 p-2 shadow-md" role="alert" style="width: 16%; margin: 0 auto; position:relative; top:55px">
+    <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 p-2 shadow-md" role="alert" style="width: 16%; margin: 0 auto; position:relative; top:30px">
         <p class="font-bold" style="margin-bottom:0px !important">{{session('success')}}</p>
     </div>
     @endif
@@ -135,20 +128,17 @@
         <!-- Logo Salumeria -->
         <img src="{{ asset('images/logo/logoSalumeria.png') }}" alt="Logo Salumeria" class="login-logo">
 
-        <h1>Benvenuto alla Salumeria Bella Vita</h1>
-        <p class="text-muted mb-4">Accedi al tuo account per gustare la tradizione italiana 🍷</p>
-
         <form method="POST" action="{{ route('loginForm') }}">
             @csrf
 
             <div class="mb-3 text-start">
                 <label for="email" class="form-label fw-semibold">Email</label>
-                <input id="email" type="email" class="form-control" name="email" required autofocus>
+                <input id="email" type="email" class="form-control" name="email" value="{{ $rememberDataUsers['email'] ?? '' }}" required autofocus>
             </div>
 
             <div class="mb-3 text-start">
                 <label for="password" class="form-label fw-semibold">Password</label>
-                <input id="password" type="password" class="form-control" name="password" required>
+                <input id="password" type="password" class="form-control" name="password" required value="{{ $rememberDataUsers['password'] ?? '' }}">
             </div>
 
             <div class="mb-3 form-check text-start">

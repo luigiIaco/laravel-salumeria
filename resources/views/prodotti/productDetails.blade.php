@@ -1,15 +1,12 @@
 @extends('layouts.app')
 
-@section('hide-navbar', true)
-@section('title', $product->nome)
-
 <style>
     /* 🔹 Contenitore principale */
     .product-container {
         display: flex;
         align-items: start;
         justify-content: center;
-        min-height: 100vh;
+        height: 74.8vh;
     }
 
     @keyframes popIn {
@@ -226,9 +223,12 @@
 </style>
 
 @section('content')
-
-<body>
     <h1 class="text-center fw-semibold p-4">Dettagli dei nostri prodotti</h1>
+    @if(session('success'))
+    <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 p-2 shadow-md mb-3" role="alert" style="width: 16%; margin: 0 auto;">
+        <p class="font-bold" style="margin-bottom:0px !important">{{session('success')}}</p>
+    </div>
+    @endif
     <!-- 🔙 Pulsante Torna ai Prodotti -->
     <a href="{{ url('/products') }}" class="back-button">
         <i class="fa-solid fa-arrow-left"></i>
@@ -263,12 +263,19 @@
                 <p class="product-description">{{ $product->descrizione }}</p>
                 <p class="product-price">€ {{ number_format($product->prezzo, 2, ',', '.') }} / kg</p>
 
-                <button class="btn-cart">
-                    <i class="fa-solid fa-cart-plus me-2"></i> Aggiungi al carrello
-                </button>
+                <form action="{{ route('cart.add') }}" method="POST" class="d-inline">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <input type="number" name="quantità" value="1" min="1"
+                        class="w-16 border border-[#d1b58a] rounded-lg text-center py-1 focus:ring-2 focus:ring-[#B3543E]">
+
+
+                    <button type="submit" class="btn">
+                        <i class="fa-solid fa-cart-plus fa-xl"></i>
+                    </button>
+                </form>
+
             </div>
         </div>
     </div>
-    @endsection
-
-</body>
+@endsection

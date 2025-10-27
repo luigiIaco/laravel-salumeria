@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Carrello extends Model
 {
+    protected $table = 'carrelli';
     protected $fillable = ['user_id', 'product_id', 'quantita', 'prezzo_totale'];
 
     public function user()

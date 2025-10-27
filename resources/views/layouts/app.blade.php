@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Salumeria')</title>
+    <title>Antica Salumeria</title>
     <link rel="icon" href="{{ asset('images/logo/logoSalumeria.ico') }}" type="image/x-icon">
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -121,7 +121,7 @@
     </style>
 </head>
 
-<body class="birthstone-regular">
+<body class="birthstone-regular d-flex flex-column min-vh-100">
 
     <nav class="navbar navbar-expand-lg p-3 navbar-dark bg-dark flex flex-col @if (Route::is('home')) scale-in @endif">
         <!-- Logo -->
@@ -241,16 +241,12 @@
         </div>
     </div>
 
-
-
-
-
-    <main>
+    <main class="flex-grow-1">
         @yield('content')
     </main>
 
     <!-- Footer -->
-    <footer class="w-100 bg-dark text-white text-center py-3">
+    <footer class="w-100 bg-dark text-white text-center py-3 mt-auto">
         <p class="mb-0">© {{ date('Y') }} Salumeria Bella Vita - Tutti i diritti riservati</p>
     </footer>
     <script>
