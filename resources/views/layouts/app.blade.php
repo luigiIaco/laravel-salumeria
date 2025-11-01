@@ -147,11 +147,11 @@
                     Ciao, {{ Auth::user()->name }}
                     <el-dropdown class="inline-block">
                         <button class="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 text-sm font-semibold text-gray-900 shadow-xs">
-                            @if (!Auth::user()->imageProfile)
+                            @if (!Auth::user()->imageprofile)
                             <div class="avatar-circle" id="circleImage"><i class="fa-solid fa-user fa-lg" style="color: #c3c6d1;"></i></div>
                             @else
                             <img
-                                src="{{ asset('storage/' . Auth::user()->imageProfile) }}"
+                                src="{{ asset('storage/' . Auth::user()->imageprofile) }}"
                                 alt="Avatar"
                                 class="w-12 h-12 rounded-full object-cover">
                             @endif
@@ -160,7 +160,7 @@
                         <el-menu anchor="bottom end" popover class="w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
                             <div class="py-1">
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">Dati Anagrafici</a>
-                                @if (!Auth::user()->imageProfile)
+                                @if (!Auth::user()->imageprofile)
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden" data-bs-toggle="modal" data-bs-target="#uploadModal"> Aggiungi immagine</a>
                                 @else
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden" data-bs-toggle="modal" data-bs-target="#uploadModal"> Cambia immagine</a>
@@ -266,6 +266,21 @@
                 }
             });
         });
+
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const icon = document.getElementById('toggleIcon');
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = "password";
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

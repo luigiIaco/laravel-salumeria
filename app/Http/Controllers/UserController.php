@@ -26,12 +26,14 @@ class UserController extends Controller
             'password' => 'required|string|min:8|confirmed'
         ]);
 
-
         $user = User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
         ]);
+
+        Auth::login($user);
+
         return redirect()->route('home')->with('success', 'Registrazione avvenuta con successo');
     }
 
@@ -73,13 +75,13 @@ class UserController extends Controller
 
         $user = Auth::user();
 
-        if ($user->imageProfile) {
-            Storage::disk('public')->delete($user->imageProfile);
+        if ($user->imageprofile) {
+            Storage::disk('public')->delete($user->imageprofile);
         }
 
         $path = $request->file('imageProfile')->store('profile_images/' . $user->name, 'public');
 
-        $user->imageProfile = $path;
+        $user->imageprofile = $path;
         $user->save();
 
         return redirect()->route('home')->with('success', 'Immagine caricata con successo');

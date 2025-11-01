@@ -98,7 +98,15 @@
             </div>
 
             <div class="mb-3 text-start">
-                <label for="password" class="form-label fw-semibold">Password</label>
+                <div class="flex justify-between">
+                    <label for="password" class="form-label fw-semibold">Password</label>
+                    <button type="button"
+                        class="btn btn-outline-secondary btn-sm mb-1"
+                        onclick="togglePassword()">
+                        <i class="fa-solid fa-eye" id="toggleIcon"></i>
+                    </button>
+                </div>
+
                 <input type="password" name="password" id="password" class="form-control" required>
             </div>
 

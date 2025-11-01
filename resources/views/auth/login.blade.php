@@ -8,7 +8,7 @@
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         padding: 2.5rem;
         max-width: 420px;
-        margin: 110px auto;
+        margin: 85px auto;
         animation: fadeIn 0.8s ease-in-out;
     }
 
@@ -127,6 +127,7 @@
     <div class="login-card">
         <!-- Logo Salumeria -->
         <img src="{{ asset('images/logo/logoSalumeria.png') }}" alt="Logo Salumeria" class="login-logo">
+        <h2>Login</h2>
 
         <form method="POST" action="{{ route('loginForm') }}">
             @csrf
@@ -137,7 +138,14 @@
             </div>
 
             <div class="mb-3 text-start">
-                <label for="password" class="form-label fw-semibold">Password</label>
+                <div class="flex justify-between">
+                    <label for="password" class="form-label fw-semibold">Password</label>
+                    <button type="button"
+                        class="btn btn-outline-secondary btn-sm mb-1"
+                        onclick="togglePassword()">
+                        <i class="fa-solid fa-eye" id="toggleIcon"></i>
+                    </button>
+                </div>
                 <input id="password" type="password" class="form-control" name="password" required value="{{ $rememberDataUsers['password'] ?? '' }}">
             </div>
 
