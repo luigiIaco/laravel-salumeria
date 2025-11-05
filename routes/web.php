@@ -39,3 +39,12 @@ Route::post('/upload-image', [UserController::class, 'uploadImage'])->name('uplo
 Route::get('/cart', [ProdottoController::class, 'cartPage'])->name('page.cart');
 Route::post('/cart-add', [ProdottoController::class, 'cartAdd'])->name('cart.add');
 
+//Password dimenticata
+Route::get('/forgot-password', [UserController::class, 'showForgotPasswordForm'])->name('page.forgotPassword');
+Route::post('/forgot-password', [UserController::class, 'sendMail'])->name('forgotPassword');
+Route::get('/page-confirmation', [UserController::class, 'showPageConfirmationSendEmail'])->name('page.confirmSendEmail');
+
+//Password Reset
+Route::get('/password-reset', [UserController::class, 'showResetPasswordForm'])->name('page.resetPassword');
+Route::post('/password-reset', [UserController::class, 'resetPassword'])->name('resetPassword');
+

@@ -102,40 +102,14 @@
     }
 </style>
 
-<div class="container text-center">
-    @if(session('success'))
-    <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 p-2 shadow-md" role="alert" style="width: 16%; margin: 0 auto; position:relative; top:30px">
-        <p class="font-bold" style="margin-bottom:0px !important">{{session('success')}}</p>
-    </div>
-    @endif
-
-
-    @if ($errors->any())
-    <div role="alert">
-        <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
-        </div>
-        <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
-            <ul class="mb-0">
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    </div>
-    @endif
-
+<div class="container text-center" style="position:relative;top:90px">
     <div class="login-card">
         <!-- Logo Salumeria -->
         <img src="{{ asset('images/logo/logoSalumeria.png') }}" alt="Logo Salumeria" class="login-logo">
-        <h2>Login</h2>
+        <h2>Reset Password</h2>
 
-        <form method="POST" action="{{ route('loginForm') }}">
+        <form method="POST" action="{{ route('resetPassword') }}">
             @csrf
-
-            <div class="mb-3 text-start">
-                <label for="email" class="form-label fw-semibold">Email</label>
-                <input id="email" type="email" class="form-control" name="email" value="{{ $rememberDataUsers['email'] ?? '' }}" required autofocus>
-            </div>
 
             <div class="mb-3 text-start">
                 <div class="flex justify-between">
@@ -149,25 +123,7 @@
                 <input id="password" type="password" class="form-control" name="password" required value="{{ $rememberDataUsers['password'] ?? '' }}">
             </div>
 
-            <div class="mb-3 form-check text-start">
-                <input class="form-check-input" type="checkbox" name="remember" id="remember">
-                <label class="form-check-label" for="remember">Ricordami</label>
-            </div>
-
-            <button type="submit" class="btn btn-login w-100">Accedi</button>
-
-            <div class="mt-3">
-                <a class="text-decoration-none text-muted" href="{{ route('page.forgotPassword') }}">
-                    Hai dimenticato la password?
-                </a>
-            </div>
-
-            <div class="mt-4 flex justify-center">
-                <p class="text-muted">Non hai un account?
-                    <a href="{{ url('/register') }}" class="btn-underline mx-1">Registrati ora</a>
-                </p>
-
-            </div>
+            <button type="submit" class="btn btn-login w-100">Cambia Password</button>
         </form>
     </div>
 </div>
