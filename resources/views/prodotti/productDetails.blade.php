@@ -225,7 +225,7 @@
 @section('content')
     <h1 class="text-center fw-semibold p-4">Dettagli dei nostri prodotti</h1>
     @if(session('success'))
-    <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 p-2 shadow-md mb-3" role="alert" style="width: 16%; margin: 0 auto;">
+    <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 p-2 shadow-md mb-3" id="confirmation" role="alert" style="width: 16%; margin: 0 auto;">
         <p class="font-bold" style="margin-bottom:0px !important">{{session('success')}}</p>
     </div>
     @endif

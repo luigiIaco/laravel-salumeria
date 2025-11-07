@@ -241,6 +241,28 @@
         </div>
     </div>
 
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Conferma eliminazione</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <p>Sei sicuro di voler eliminare questi elementi dal carrello?</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Elimina</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <main class="flex-grow-1">
         @yield('content')
     </main>
@@ -281,6 +303,25 @@
                 icon.classList.add('fa-eye');
             }
         }
+
+        setTimeout(() => {
+            document.getElementById('confirmation').style.display = 'none';
+        }, 2000);
+        let formToSubmit = null;
+
+        function openConfirmModal(button) {
+            // Salva il riferimento al form originale
+            formToSubmit = button.closest('form');
+            const modal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
+            modal.show();
+        }
+
+        // Quando clicchi "Elimina" nella modale → invia il form salvato
+        document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
+            if (formToSubmit) {
+                formToSubmit.submit();
+            }
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
