@@ -7,6 +7,7 @@ use App\Models\Prodotto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ProdottoController extends Controller
 {
@@ -45,6 +46,7 @@ class ProdottoController extends Controller
     {
         $items = Carrello::all();
         $prezzo_totale = Carrello::sum('prezzo');
+        Session::put('prezzoTotaleCarrello',$prezzo_totale);
         return view('prodotti.carrello', compact('items', 'prezzo_totale'));
     }
 

@@ -112,6 +112,103 @@
             cursor: pointer;
         }
 
+        .card {
+            background: #fff8f0;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            max-width: 420px;
+            width: 100%;
+            padding: 40px 30px;
+            overflow: hidden;
+        }
+
+        .card h2 {
+            color: #8B0000;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 10px 15px;
+        }
+
+        .link {
+            position: relative;
+            display: inline-block;
+            color: #8B0000;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: #8B0000;
+            transition: width 0.3s ease;
+        }
+
+        .link-login:hover::after {
+            width: 100%;
+        }
+
+        .link-login:hover {
+            color: #A01A1A;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 1.5rem;
+            width: 100px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-underline {
+            position: relative;
+            display: inline-block;
+            color: #8B0000;
+            /* colore testo */
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .btn-underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            /* distanza dalla scritta */
+            width: 0;
+            height: 2px;
+            /* spessore della linea */
+            background-color: #8B0000;
+            transition: width 0.3s ease;
+        }
+
+        .btn-underline:hover::after {
+            width: 100%;
+            /* la linea si estende sotto tutto il testo */
+        }
+
+        .btn-underline:hover {
+            color: #a01a1a;
+            /* opzionale, cambia colore del testo */
+        }
+
+
         @keyframes scaleIn {
             to {
                 opacity: 1;
@@ -320,6 +417,31 @@
         document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
             if (formToSubmit) {
                 formToSubmit.submit();
+            }
+        });
+
+        document.getElementById('card_number').addEventListener('input', function() {
+            const value = this.value.replace(/\s+/g, ''); // rimuove spazi
+            const first4 = value.substring(0, 4);
+
+            const visa_logo = document.getElementById('visa_logo');
+            const mastercard_logo = document.getElementById('mastercard_logo');
+            const discover_logo = document.getElementById('discover_logo');
+
+            if (first4.length === 4 && !isNaN(first4)) {
+                const num = parseInt(first4);
+
+                if (num >= 1000 && num <= 2000) {
+                    visa_logo.style.display = 'block';
+                } else if (num >= 2001 && num <= 3000) {
+                    mastercard_logo.style.display = 'block';
+                } else if (num >= 3001 && num <= 4000) {
+                    discover_logo.style.display = 'block';
+                }
+            } else {
+                visa_logo.style.display = 'none';
+                mastercard_logo.style.display = 'none';
+                discover_logo.style.display = 'none';
             }
         });
     </script>

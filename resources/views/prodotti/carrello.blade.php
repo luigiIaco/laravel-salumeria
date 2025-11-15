@@ -149,7 +149,7 @@
                 Totale: <span class="text-[#B3543E] text-2xl font-bold">€ {{$prezzo_totale}}</span>
             </h3>
 
-            <a href="#"
+            <a href="{{ route('page.paymentForm') }}"
                 class="sm:mt-0 inline-block bg-gradient-to-r from-[#B3543E] to-[#5A3E2B] text-white p-3 rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition">
                 Procedi al pagamento 💳
             </a>
