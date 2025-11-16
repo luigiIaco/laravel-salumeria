@@ -208,6 +208,299 @@
             /* opzionale, cambia colore del testo */
         }
 
+        @keyframes popIn {
+            0% {
+                transform: scale(1);
+            }
+
+            60% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .back-button {
+            position: absolute;
+            top: 45%;
+            left: 2%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border-radius: 50px;
+            padding: 12px 22px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            overflow: hidden;
+            opacity: 1;
+            transform: translateX(-30px);
+            animation: slideInLeft 0.6s ease forwards 0.4s;
+            animation: popIn 1.5s ease-in-out infinite;
+        }
+
+        .back-button i {
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .back-button:hover i {
+            transform: translateX(-5px);
+        }
+
+        /* Effetto luce */
+        .back-button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+            transition: all 0.6s ease;
+        }
+
+        .back-button:hover::after {
+            left: 100%;
+        }
+
+        .product-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 74.8vh;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(1);
+            }
+
+            60% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+
+        /* 🔹 Card principale */
+        .product-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+            animation: fadeIn 0.7s ease forwards;
+            transform-origin: top center;
+            position: relative;
+        }
+
+        /* 🔹 Sezione immagine */
+        .product-image {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .product-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* 🔹 Frecce navigazione */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .nav-arrow:hover {
+            background: rgba(0, 0, 0, 0.85);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-arrow.left {
+            left: 15px;
+        }
+
+        .nav-arrow.right {
+            right: 15px;
+        }
+
+        /* 🔹 Dettagli prodotto */
+        .product-details {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .product-description {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #e63946;
+            margin-bottom: 25px;
+        }
+
+        .btn-cart {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+            align-self: start;
+        }
+
+        .btn-cart:hover {
+            background-color: #0056b3;
+        }
+
+        /* 🔹 Pulsante "Torna ai prodotti" */
+        .back-button {
+            position: absolute;
+            top: 45%;
+            left: 2%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border-radius: 50px;
+            padding: 12px 22px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            overflow: hidden;
+            opacity: 1;
+            transform: translateX(-30px);
+            animation: slideInLeft 0.6s ease forwards 0.4s;
+            animation: popIn 1.5s ease-in-out infinite;
+        }
+
+        .back-button i {
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .back-button:hover i {
+            transform: translateX(-5px);
+        }
+
+        /* Effetto luce */
+        .back-button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+            transition: all 0.6s ease;
+        }
+
+        .back-button:hover::after {
+            left: 100%;
+        }
+
+        /* 🔹 Animazioni */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-card {
+                flex-direction: column;
+            }
+
+            .product-details {
+                padding: 20px;
+            }
+
+            .back-button {
+                top: 20px;
+                left: 20px;
+                font-size: 14px;
+                padding: 10px 16px;
+            }
+        }
 
         @keyframes scaleIn {
             to {
@@ -369,6 +662,7 @@
         <p class="mb-0">© {{ date('Y') }} Salumeria Bella Vita - Tutti i diritti riservati</p>
     </footer>
     <script>
+        //Qui gestisco l'immagine di profilo
         document.addEventListener('DOMContentLoaded', function() {
             const input = document.getElementById('avatarInput');
             const preview = document.getElementById('previewImage');
@@ -386,6 +680,7 @@
             });
         });
 
+        //Qui implemento il mostra/nascondi la password
         function togglePassword() {
             const passwordInput = document.getElementById('password');
             const icon = document.getElementById('toggleIcon');
@@ -401,9 +696,11 @@
             }
         }
 
+        //Dopo due secondi gli alert spariscono
         setTimeout(() => {
             document.getElementById('confirmation').style.display = 'none';
         }, 2000);
+
         let formToSubmit = null;
 
         function openConfirmModal(button) {
@@ -420,6 +717,8 @@
             }
         });
 
+
+        //In base ai primi numeri inseriti nel campo 'Numero carta' esce un diverso tipo di carta
         document.getElementById('card_number').addEventListener('input', function() {
             const value = this.value.replace(/\s+/g, ''); // rimuove spazi
             const first4 = value.substring(0, 4);
@@ -443,6 +742,14 @@
                 mastercard_logo.style.display = 'none';
                 discover_logo.style.display = 'none';
             }
+        });
+
+        //qui quando clicco la checkbox invia il form
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('form');
+            document.getElementById('checkbox').addEventListener('change', function() {
+                form.submit();
+            });
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>

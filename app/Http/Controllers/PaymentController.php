@@ -14,9 +14,39 @@ use Illuminate\Support\Facades\Auth;
 class PaymentController extends Controller
 {
 
-    public function showPaymentForm()
+    public function showPaymentForm(Request $request)
     {
-        return view('payment.formPayment');
+        Log::info($request);
+        $numberCard = 0;
+        $card_saved = false;
+        $brand = '';
+        $user = Auth::user();
+        $total = Session::get('prezzoTotaleCarrello');
+        $item = CreditCard::where("user_id", $user->id)->first();
+        if ($request['saved_card'] == 'on') {
+            $card_holder = $item->card_holder;
+            $numberCardInput = $item->card_number;
+            $exp_month = $item->exp_month;
+            $exp_year = $item->exp_year;
+            $cvv = $item->cvv;
+            $checked = true;
+        } else {
+            $card_holder = '';
+            $numberCardInput = '';
+            $exp_month = '';
+            $exp_year = '';
+            $cvv = '';
+            $checked = false;
+        }
+        if ($item) {
+            $card_saved = true;
+            $numberCard = $item->card_number;
+            $firstFour = substr($numberCard, 0, 4);
+            $brand = $item->brand;
+        } else {
+            $card_saved = false;
+        }
+        return view('payment.formPayment', compact('firstFour', 'brand', 'card_saved', 'numberCard', 'checked', 'cvv', 'exp_month', 'exp_year', 'numberCardInput', 'card_holder', 'total'));
     }
 
     public function showPaymentConfirmation()
@@ -27,8 +57,9 @@ class PaymentController extends Controller
 
     public function paymentProduct(Request $request)
     {
-
         $prezzoTotaleCarrello = Session::get('prezzoTotaleCarrello');
+        $user = Auth::user();
+        $item = CreditCard::where("user_id", $user->id)->first();
 
         $validatedData = $request->validate([
             'holder'      => 'required|string|max:255',
@@ -49,11 +80,11 @@ class PaymentController extends Controller
             $brand = 'unknown';
         };
 
-
         if ($request->has('save_card')) {
             CreditCard::create([
+                'user_id' => $user->id,
                 'card_holder' => $validatedData['holder'],
-                'card_number_encrypted' => Hash::make($validatedData['numberCard']),
+                'card_number' => $validatedData['numberCard'],
                 'cvv' => $validatedData['cvv'],
                 'brand' => $brand,
                 'exp_month' => $validatedData['exp_month'],
@@ -61,18 +92,19 @@ class PaymentController extends Controller
             ]);
         }
 
-        $user = Auth::user();
-
-        if(Payment::create([
+        if (Payment::create([
             'user_id' => $user->id,
             'card_number' => Hash::make($validatedData['numberCard']),
             'amount' => $prezzoTotaleCarrello,
             'status' => 'OK',
         ])) {
             Carrello::truncate();
+            $item = CreditCard::where("card_number", $validatedData['numberCard'])->first();
+            if ($item) {
+                $item->credit -= $prezzoTotaleCarrello;
+                $item->save();
+            }
         }
-
-
 
         $transactionData = [
             "cardNumber" => $firstFour,

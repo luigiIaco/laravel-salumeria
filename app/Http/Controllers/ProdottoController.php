@@ -46,7 +46,7 @@ class ProdottoController extends Controller
     {
         $items = Carrello::all();
         $prezzo_totale = Carrello::sum('prezzo');
-        Session::put('prezzoTotaleCarrello',$prezzo_totale);
+        Session::put('prezzoTotaleCarrello', $prezzo_totale);
         return view('prodotti.carrello', compact('items', 'prezzo_totale'));
     }
 
