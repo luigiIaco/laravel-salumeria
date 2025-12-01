@@ -13,7 +13,7 @@ export default defineConfig({
     server: {
         host: "0.0.0.0", // permette connessioni da altri dispositivi
         hmr: {
-            host: "192.168.1.121", // 👉 metti qui l’IP del tuo PC
+            host: "192.168.1.121",
         },
         https: true
     },
