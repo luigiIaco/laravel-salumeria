@@ -15,5 +15,6 @@ export default defineConfig({
         hmr: {
             host: "192.168.1.121", // 👉 metti qui l’IP del tuo PC
         },
+        https: true
     },
 });
