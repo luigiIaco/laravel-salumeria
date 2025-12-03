@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+@if ($errors->any())
+<div role="alert" class="flex justify-center relative top-10">
+    <div class="rounded-b bg-red-100 text-red-700" id="confirmation">
+        <ul class="mb-0 p-3" style="padding-left: 0px;">
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+</div>
+@endif
 <div class="container text-center flex justify-center py-5">
     <div class="card scale-in">
         <img src="{{ asset('images/logo/logoSalumeria.png') }}" alt="Logo Salumeria" class="logo">
@@ -24,8 +35,7 @@
                     <label for="password" class="form-label fw-semibold">Password</label>
                     <button type="button"
                         class="btn btn-outline-secondary btn-sm mb-1"
-                        onclick="togglePassword()"
-                        >
+                        onclick="togglePassword()">
                         <i class="fa-solid fa-eye" id="toggleIcon"></i>
                     </button>
                 </div>
