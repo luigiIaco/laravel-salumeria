@@ -44,8 +44,16 @@ class ProdottoController extends Controller
 
     public function cartPage()
     {
-        $items = Carrello::all();
-        $prezzo_totale = Carrello::sum('prezzo');
+        $prezzo_totale = 0;
+        $user = Auth::user();
+        $items = Carrello::where("user_id", $user->id)->get();
+        if ($items) {
+            foreach ($items as $item) {
+                $prezzo_totale += $item->prezzo;
+            }
+        } else {
+            $prezzoTotale = 0;
+        }
         Session::put('prezzoTotaleCarrello', $prezzo_totale);
         return view('prodotti.carrello', compact('items', 'prezzo_totale'));
     }
