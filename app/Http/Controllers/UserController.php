@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\TestEmail;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -42,6 +43,7 @@ class UserController extends Controller
 
     public function showLoginForm()
     {
+        Artisan::call('storage:link');
         $cookie_remember = Cookie::get('remember_me');
         $rememberDataUsers = json_decode($cookie_remember, true);
         return view('auth.login', compact('rememberDataUsers'));
