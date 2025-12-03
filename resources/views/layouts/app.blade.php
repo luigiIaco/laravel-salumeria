@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Birthstone&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100..900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -21,16 +21,17 @@
 
         body {
             background-color: #D8B384;
-            font-family: 'Dancing Script', cursive;
         }
 
         a {
             color: #5A3E2B;
         }
 
-        .birthstone-regular {
-            font-family: "Birthstone", cursive;
-            font-weight: 400;
+
+        .smooch-sans-regular {
+            font-family: "Smooch Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 200;
             font-style: normal;
         }
 
