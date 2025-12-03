@@ -37,8 +37,8 @@ return [
 
     'mailers' => [
         'resend' => [
-            'transport' => 'resend',
-            'dsn' => env('RESEND_DSN'), // Carica il DSN dalla variabile d'ambiente
+            'transport' => 'resend-api', // Nuovo nome per il trasporto
+            'key' => env('RESEND_API_KEY'), // Passiamo la chiave API grezza
         ],
         'smtp' => [
             'transport' => 'smtp',
