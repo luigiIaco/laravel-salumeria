@@ -36,7 +36,10 @@ return [
     */
 
     'mailers' => [
-
+        'resend' => [
+            'transport' => 'resend',
+            'dsn' => env('RESEND_DSN'), // Carica il DSN dalla variabile d'ambiente
+        ],
         'smtp' => [
             'transport' => 'smtp',
             'scheme' => env('MAIL_SCHEME'),
