@@ -24,14 +24,14 @@ WORKDIR /var/www/html
 COPY . .
 
 # Installazione dipendenze PHP e JS
-# Usiamo --ignore-platform-reqs se ci sono problemi di estensioni locali
 RUN composer install --no-dev --optimize-autoloader
-
-# Compila gli asset (Vite)
 RUN npm install && npm run build
 
-# Permessi corretti per Laravel
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# Gestione Storage Link (evita l'errore Permission Denied)
+RUN rm -rf public/storage && ln -s /var/www/html/storage/app/public /var/www/html/public/storage
+
+# Permessi corretti per l'utente web di Apache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/public/storage
 
 # Configurazione Apache per puntare a /public
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
@@ -39,3 +39,6 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 EXPOSE 80
+
+# Avvia solo il server Apache
+CMD ["apache2-foreground"]
