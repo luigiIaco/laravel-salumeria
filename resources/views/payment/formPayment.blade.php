@@ -57,10 +57,6 @@
             <button type="submit" class="btn btn-primary w-100 mt-4">Paga ora</button>
         </form>
 
-        <form method="GET" action="{{ route('page.paymentForm') }}" id="form" style="position:relative;right:205px;bottom:125px">
-            <input type="checkbox" name="saved_card" class="form-check-input mx-1" id="checkbox" @checked($checked) />
-        </form>
-
         <div id="message" class="alert mt-3 d-none"></div>
     </div>
 </div>
