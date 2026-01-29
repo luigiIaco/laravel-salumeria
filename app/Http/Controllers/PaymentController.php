@@ -46,7 +46,7 @@ class PaymentController extends Controller
         } else {
             $card_saved = false;
         }
-        return view('payment.formPayment', compact('firstFour', 'brand', 'card_saved', 'numberCard', 'checked', 'cvv', 'exp_month', 'exp_year', 'numberCardInput', 'card_holder', 'total'));
+        return view('payment.formPayment', compact('brand', 'card_saved', 'numberCard', 'checked', 'cvv', 'exp_month', 'exp_year', 'numberCardInput', 'card_holder', 'total'));
     }
 
     public function showPaymentConfirmation()
