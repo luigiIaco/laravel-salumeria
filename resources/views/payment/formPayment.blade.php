@@ -54,45 +54,6 @@
                 <input type="number" step="0.01" id="amount" class="form-control text-center" value="{{$total}}" disabled>
             </div>
 
-            <!-- ✅ Checkbox "salva carta" -->
-            <div class="mt-3">
-                @if ($card_saved)
-                <p class="mb-0 fw-semibold">Seleziona la carta che vuoi usare:</p>
-                <div class="card p-3 mb-3 shadow-sm border-0 rounded-3">
-
-                    <label class="d-flex align-items-center gap-3 cursor-pointer mx-4">
-
-                        <!-- Icona Brand -->
-                        @if ($brand === 'Visa')
-                        <i class="fa-brands fa-cc-visa text-primary fs-1"></i>
-                        @elseif ($brand === 'Mastercard')
-                        <i class="fa-brands fa-cc-mastercard text-danger fs-1"></i>
-                        @elseif ($brand === 'Discover')
-                        <i class="fa-brands fa-cc-discover text-warning fs-1"></i>
-                        @else
-                        <span class="badge bg-secondary">Sconosciuto</span>
-                        @endif
-
-                        <!-- Testo carta -->
-                        <div class="ms-2">
-                            <small class="text-muted">
-                                {{ $firstFour }} •••• •••• ••••
-                            </small>
-                        </div>
-
-                    </label>
-
-                </div>
-
-
-                @else
-                <input class="form-check-input" type="checkbox" value="1" name="save_card">
-                <label class="form-check-label" for="save_card">
-                    Salva questa carta per futuri pagamenti
-                </label>
-                @endif
-            </div>
-
             <button type="submit" class="btn btn-primary w-100 mt-4">Paga ora</button>
         </form>
 
