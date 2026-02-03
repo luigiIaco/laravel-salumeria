@@ -7,7 +7,9 @@
     <title>Antica Salumeria</title>
     <link rel="icon" href="{{ asset('images/logo/logoSalumeria.ico') }}" type="image/x-icon">
     @vite('resources/css/app.css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -525,52 +527,61 @@
 
             <div class="absolute right-4 top-4 fs-4" style="color:#B3543E">
                 @guest
-                <p>
-                    Login
-                    <a href="{{ url('/login') }}">
-                        <i class="fa-solid fa-right-to-bracket" style="cursor: pointer;"></i>
-                    </a>
-                </p>
+                    <p>
+                        Login
+                        <a href="{{ url('/login') }}">
+                            <i class="fa-solid fa-right-to-bracket" style="cursor: pointer;"></i>
+                        </a>
+                    </p>
                 @endguest
 
                 @auth
-                <div class="flex">
-                    Ciao, {{ Auth::user()->name }}
-                    <el-dropdown class="inline-block">
-                        <button class="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 text-sm font-semibold text-gray-900 shadow-xs">
-                            @if (!Auth::user()->imageprofile)
-                            <div class="avatar-circle" id="circleImage"><i class="fa-solid fa-user fa-lg" style="color: #c3c6d1;"></i></div>
-                            @else
-                            <img
-                                src="{{ asset('storage/' . Auth::user()->imageprofile) }}"
-                                alt="Avatar"
-                                class="w-12 h-12 rounded-full object-cover">
-                            @endif
-                        </button>
-
-                        <el-menu anchor="bottom end" popover class="w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
-                            <div class="py-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">Dati Anagrafici</a>
+                    <div class="flex">
+                        Ciao, {{ Auth::user()->name }}
+                        <el-dropdown class="inline-block">
+                            <button
+                                class="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 text-sm font-semibold text-gray-900 shadow-xs">
                                 @if (!Auth::user()->imageprofile)
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden" data-bs-toggle="modal" data-bs-target="#uploadModal"> Aggiungi immagine</a>
+                                    <div class="avatar-circle" id="circleImage"><i class="fa-solid fa-user fa-lg"
+                                            style="color: #c3c6d1;"></i></div>
                                 @else
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden" data-bs-toggle="modal" data-bs-target="#uploadModal"> Cambia immagine</a>
+                                    <img src="{{ asset('storage/' . Auth::user()->imageprofile) }}" alt="Avatar"
+                                        class="w-12 h-12 rounded-full object-cover">
                                 @endif
-                                <a href="{{route('page.cart')}}" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">Carrello</a>
-                                <form action="{{ route('logoutUser') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="block w-full px-4 py-2 text-left text-sm text-red-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
-                                        Sign out
-                                    </button>
-                                </form>
+                            </button>
 
-                            </div>
-                        </el-menu>
-                    </el-dropdown>
-                </div>
-                <form id="logout-form" action="" method="POST" style="display:none;">
-                    @csrf
-                </form>
+                            <el-menu anchor="bottom end" popover
+                                class="w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                                <div class="py-1">
+                                    <a href="#"
+                                        class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">Dati
+                                        Anagrafici</a>
+                                    @if (!Auth::user()->imageprofile)
+                                        <a href="#"
+                                            class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden"
+                                            data-bs-toggle="modal" data-bs-target="#uploadModal"> Aggiungi immagine</a>
+                                    @else
+                                        <a href="#"
+                                            class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden"
+                                            data-bs-toggle="modal" data-bs-target="#uploadModal"> Cambia immagine</a>
+                                    @endif
+                                    <a href="{{route('page.cart')}}"
+                                        class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">Carrello</a>
+                                    <form action="{{ route('logoutUser') }}" method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                            class="block w-full px-4 py-2 text-left text-sm text-red-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                            Sign out
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </el-menu>
+                        </el-dropdown>
+                    </div>
+                    <form id="logout-form" action="" method="POST" style="display:none;">
+                        @csrf
+                    </form>
                 @endauth
             </div>
 
@@ -596,7 +607,8 @@
 
                 <div class="modal-header bg-dark text-white">
                     <h5 class="modal-title" id="uploadModalLabel">Carica immagine profilo</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Chiudi"></button>
                 </div>
 
                 <div class="modal-body text-center">
@@ -605,25 +617,18 @@
 
                         <!-- Immagine di anteprima -->
                         <div class="mb-3 hidden" id="containerAnteprima">
-                            <img id="previewImage"
-                                src=""
-                                alt="Anteprima immagine"
-                                class="shadow-sm"
+                            <img id="previewImage" src="" alt="Anteprima immagine" class="shadow-sm"
                                 style="width: 120px; height: 120px; object-fit: cover; margin-bottom: 15px; margin: 0 auto;">
                         </div>
 
                         <!-- Input file -->
                         <div class="mb-3">
-                            <input
-                                type="file"
-                                class="form-control"
-                                id="avatarInput"
-                                name="imageProfile"
-                                accept="image/*"
-                                required>
+                            <input type="file" class="form-control" id="avatarInput" name="imageProfile"
+                                accept="image/*" required>
                         </div>
 
-                        <button type="submit" class="btn w-100 text-white" style="background-color:#B3543E; border:none;">
+                        <button type="submit" class="btn w-100 text-white"
+                            style="background-color:#B3543E; border:none;">
                             Carica immagine
                         </button>
                     </form>
@@ -632,13 +637,15 @@
         </div>
     </div>
 
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 
                 <div class="modal-header bg-danger text-white">
                     <h5 class="modal-title" id="confirmDeleteModalLabel">Conferma eliminazione</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Chiudi"></button>
                 </div>
 
                 <div class="modal-body text-center">
@@ -664,16 +671,16 @@
     </footer>
     <script>
         //Qui gestisco l'immagine di profilo
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const input = document.getElementById('avatarInput');
             const preview = document.getElementById('previewImage');
 
-            input.addEventListener('change', function(e) {
+            input.addEventListener('change', function (e) {
                 document.getElementById('containerAnteprima').classList.remove('hidden');
                 const file = e.target.files[0];
                 if (file) {
                     const reader = new FileReader();
-                    reader.onload = function(event) {
+                    reader.onload = function (event) {
                         preview.src = event.target.result;
                     }
                     reader.readAsDataURL(file);
@@ -684,14 +691,17 @@
         //Qui implemento il mostra/nascondi la password
         function togglePassword() {
             const passwordInput = document.getElementById('password');
+            const passwordConfirmationInput = document.getElementById('password_confirmation');
             const icon = document.getElementById('toggleIcon');
 
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";
+                passwordConfirmationInput.type = "text";
                 icon.classList.remove('fa-eye');
                 icon.classList.add('fa-eye-slash');
             } else {
                 passwordInput.type = "password";
+                passwordConfirmationInput.type = "password";
                 icon.classList.remove('fa-eye-slash');
                 icon.classList.add('fa-eye');
             }
@@ -711,8 +721,19 @@
             modal.show();
         }
 
+        function scaleButton(event) {
+            const btn = event.target; // Prende il bottone cliccato
+
+            // 1. Applica la classe per rimpicciolire
+            btn.style.transform = "scale(0.9)";
+            // 2. Dopo 100ms (durata del click), rimuove la classe per farlo tornare normale
+            setTimeout(() => {
+                btn.style.transform = "scale(1)";
+            }, 100);
+        }
+
         // Quando clicchi "Elimina" nella modale → invia il form salvato
-        document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
+        document.getElementById('confirmDeleteBtn').addEventListener('click', function () {
             if (formToSubmit) {
                 formToSubmit.submit();
             }
@@ -720,7 +741,7 @@
 
 
         //In base ai primi numeri inseriti nel campo 'Numero carta' esce un diverso tipo di carta
-        document.getElementById('card_number').addEventListener('input', function() {
+        document.getElementById('card_number').addEventListener('input', function () {
             const value = this.value.replace(/\s+/g, ''); // rimuove spazi
             const first4 = value.substring(0, 4);
 
@@ -746,9 +767,9 @@
         });
 
         //qui quando clicco la checkbox invia il form
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('form');
-            document.getElementById('checkbox').addEventListener('change', function() {
+            document.getElementById('checkbox').addEventListener('change', function () {
                 form.submit();
             });
         });

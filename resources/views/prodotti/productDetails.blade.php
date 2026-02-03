@@ -10,7 +10,7 @@
 
 <!-- 🔹 Contenitore principale -->
 <div class="product-container">
-    <div class="product-card">
+    <div class="product-card" style="width: 680px; height: 330px">
         <!-- Immagine con frecce -->
         <div class="product-image">
             @if($prev)
@@ -30,7 +30,7 @@
         </div>
 
         <!-- Dettagli -->
-        <div class="product-details">
+        <div style="height: 100%;" class="product-details">
             <h1 class="product-title">{{ $product->nome }}</h1>
             <p class="product-description">{{ $product->descrizione }}</p>
             <p class="product-price">€ {{ number_format($product->prezzo, 2, ',', '.') }} / kg</p>
@@ -41,11 +41,11 @@
                 @if($product->disponibilità)
                 <input type="number" name="quantità" value="1" min="1"
                     class="w-16 border border-[#d1b58a] rounded-lg text-center py-1 focus:ring-2 focus:ring-[#B3543E]">
-                <button type="submit" class="btn">
+                <button  type="submit" style="transition: transform 0.1s ease-out;" onclick="scaleButton(event)" class="mx-2">
                     <i class="fa-solid fa-cart-plus fa-xl"></i>
                 </button>
                 @if(session('success'))
-                <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 p-2 shadow-md mt-2" id="confirmation" role="alert" style="width: 40%">
+                <div class="bg-teal-100 border-teal-500 rounded-b text-teal-900 p-2 shadow-md mt-3" style="width:60%" id="confirmation" role="alert">
                     <p class="font-bold" style="margin-bottom:0px !important">{{session('success')}}</p>
                 </div>
                 @endif

@@ -2,7 +2,7 @@
 
 @section('content')
 @if(session('success'))
-<div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 p-2 shadow-md" role="alert" style="width: 16%; margin: 0 auto; position:relative; top:30px" id="confirmation">
+<div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 p-2 shadow-md" role="alert" style="width: 30%; margin: 0 auto; position:relative; top:30px" id="confirmation">
     <p class="font-bold" style="margin-bottom:0px !important">{{session('success')}}</p>
 </div>
 @endif

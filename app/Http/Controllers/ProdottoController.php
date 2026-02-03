@@ -76,7 +76,7 @@ class ProdottoController extends Controller
                 'prezzo' => (float) $product->prezzo * $request['quantità'],
             ]);
         }
-        return redirect()->back()->with('success', 'Prodotto aggiunto al carrello!');
+        return redirect()->back()->with('success', 'Aggiunto al carrello!');
     }
 
     public function cartDelete(Request $request)
