@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container text-center flex justify-center py-5" style="position:relative;top:30px">
+<div class="container text-center flex justify-center py-5" style="position:relative">
     <div class="card">
         <!-- Logo Salumeria -->
         <img src="{{ asset('images/logo/logoSalumeria.png') }}" alt="Logo Salumeria" class="logo">
